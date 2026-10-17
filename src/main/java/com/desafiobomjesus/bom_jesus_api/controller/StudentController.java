@@ -3,7 +3,6 @@ package com.desafiobomjesus.bom_jesus_api.controller;
 import com.desafiobomjesus.bom_jesus_api.dto.StudentRequest;
 import com.desafiobomjesus.bom_jesus_api.dto.StudentResponse;
 import com.desafiobomjesus.bom_jesus_api.service.StudentService;
-import com.desafiobomjesus.bom_jesus_api.service.TeacherService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
