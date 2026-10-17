@@ -24,10 +24,10 @@ public abstract class Person {
     private String name;
 
     @Column(nullable = false)
-    private String phoneNuString;
+    private String phoneNumber;
 
     @Column(nullable = false)
-    private String emailString;
+    private String emailAddress;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -35,4 +35,14 @@ public abstract class Person {
 
     @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Address> address = new ArrayList<>();
+
+    public void addAddress(Address address) {
+        this.address.add(address);
+        address.setPerson(this);
+    }
+
+    public void removeAddress(Address address) {
+        this.address.remove(address);
+        address.setPerson(null);
+    }
 }
