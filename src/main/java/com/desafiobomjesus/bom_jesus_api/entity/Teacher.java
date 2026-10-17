@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(name = "teacher")
 @Getter
@@ -15,5 +17,5 @@ import lombok.Setter;
 public class Teacher extends Person {
 
     @Column(precision = 12, scale = 2)
-    private double salary;
+    private BigDecimal salary;
 }
