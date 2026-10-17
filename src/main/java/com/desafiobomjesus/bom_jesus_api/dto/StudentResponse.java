@@ -9,6 +9,6 @@ public record StudentResponse(
         String emailAddress,
         String studentNumber,
         byte[] photo, // no JSON vira texto em Base64
-        List<AddressRequest> addresses
+        List<AddressResponse> addresses
 ) {
 }
