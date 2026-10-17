@@ -8,6 +8,6 @@ public record TeacherRequest(
         String phoneNumber,
         String emailAddress,
         BigDecimal salary,
-        List<AddressRequest> addresses
+        List<AddressRequest> address
 ) {
 }

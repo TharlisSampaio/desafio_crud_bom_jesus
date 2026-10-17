@@ -13,15 +13,10 @@ import java.util.List;
 @RestController
 @RequestMapping("api/students")
 public class StudentController {
-    private StudentService studentService;
+    private final StudentService studentService;
 
     public StudentController(StudentService studentService) {
         this.studentService = studentService;
-    }
-
-    @GetMapping("/test")
-    public void test() {
-        System.out.println("test");
     }
 
     // GET byId
@@ -56,7 +51,6 @@ public class StudentController {
     // POST createdStudent
     @PostMapping
     public ResponseEntity<StudentResponse> createStudent(@RequestBody StudentRequest studentRequest) {
-        System.out.println("createStudent " + studentRequest);
         try {
             var student = this.studentService.createStudent(studentRequest);
             return ResponseEntity.status(HttpStatus.CREATED).body(student);

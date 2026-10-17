@@ -15,7 +15,7 @@ public class TeacherMapper {
         teacher.setEmailAddress(teacherRequest.emailAddress());
         teacher.setPhoneNumber(teacherRequest.phoneNumber());
         teacher.setSalary(teacherRequest.salary());
-        teacherRequest.addresses().forEach(a -> teacher.addAddress(AddressMapper.toEntity(a)));
+        teacherRequest.address().forEach(a -> teacher.addAddress(AddressMapper.toEntity(a)));
         return teacher;
     }
 
