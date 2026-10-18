@@ -3,10 +3,13 @@ package com.desafiobomjesus.bom_jesus_api.controller;
 import com.desafiobomjesus.bom_jesus_api.dto.StudentRequest;
 import com.desafiobomjesus.bom_jesus_api.dto.StudentResponse;
 import com.desafiobomjesus.bom_jesus_api.service.StudentService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -21,62 +24,44 @@ public class StudentController {
     // GET byId
     @GetMapping("/{id}")
     public ResponseEntity<StudentResponse> findById(@PathVariable Long id) {
-        try {
-            var student = studentService.findById(id);
-            return ResponseEntity.ok().body(student);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return ResponseEntity.ok(studentService.findById(id));
     }
 
     // GET  byName
     @GetMapping(params = "name")
     public ResponseEntity<StudentResponse> findByName(@RequestParam String name) {
-        try {
-            var student = studentService.findByName(name);
-            return ResponseEntity.ok().body(student);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return ResponseEntity.ok(studentService.findByName(name));
     }
 
     // GET allStudents
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<StudentResponse>> findAll() {
-        var students = studentService.getAll();
-        return ResponseEntity.ok().body(students);
+        return ResponseEntity.ok(studentService.getAll());
     }
 
     // POST createdStudent
     @PostMapping
-    public ResponseEntity<StudentResponse> createStudent(@RequestBody StudentRequest studentRequest) {
-        try {
-            var student = this.studentService.createStudent(studentRequest);
-            return ResponseEntity.status(HttpStatus.CREATED).body(student);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
-        }
+    public ResponseEntity<StudentResponse> createStudent(@Valid @RequestBody StudentRequest studentRequest) {
+        StudentResponse response = studentService.createStudent(studentRequest);
+
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(response.id())
+                .toUri();
+
+        return ResponseEntity.created(location).body(response);
     }
 
     // UPDATE student
     @PutMapping("/{id}")
     public ResponseEntity<StudentResponse> updateStudent(@PathVariable Long id, @RequestBody StudentRequest studentRequest) {
-        try {
-            studentService.updateStudent(id, studentRequest);
-            return ResponseEntity.ok().body(studentService.findById(id));
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
-        }
+        return ResponseEntity.ok(studentService.updateStudent(id, studentRequest));
     }
 
     // DELETE deleteStudent
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteStudent(@PathVariable Long id) {
-        try {
-            studentService.deleteById(id);
-            return ResponseEntity.noContent().build();
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
-        }
+        studentService.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }

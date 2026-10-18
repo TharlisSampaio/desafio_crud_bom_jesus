@@ -2,6 +2,7 @@ package com.desafiobomjesus.bom_jesus_api.entity;
 
 import com.desafiobomjesus.bom_jesus_api.entity.enums.Status;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,12 +21,15 @@ public abstract class Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
     @Column(nullable = false)
     private String name;
 
+    @NotBlank
     @Column(nullable = false)
     private String phoneNumber;
 
+    @NotBlank
     @Column(nullable = false)
     private String emailAddress;
 

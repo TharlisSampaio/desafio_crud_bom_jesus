@@ -4,7 +4,6 @@ import com.desafiobomjesus.bom_jesus_api.dto.*;
 import com.desafiobomjesus.bom_jesus_api.entity.Teacher;
 import com.desafiobomjesus.bom_jesus_api.entity.enums.Status;
 import com.desafiobomjesus.bom_jesus_api.mapper.TeacherMapper;
-import com.desafiobomjesus.bom_jesus_api.repository.StudentRepository;
 import com.desafiobomjesus.bom_jesus_api.repository.TeacherRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -13,7 +12,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.math.BigDecimal;
 import java.util.Collections;
