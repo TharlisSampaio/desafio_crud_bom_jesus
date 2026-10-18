@@ -44,12 +44,7 @@ public class ImplStudentService implements StudentService {
     @Override
     public StudentResponse createStudent(StudentRequest studentRequest) {
         Student student = StudentMapper.toEntity(studentRequest);
-        try {
-            student = studentRepository.save(student);
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw e;
-        }
+        student = studentRepository.save(student);
         return StudentMapper.toStudentResponse(student);
     }
 

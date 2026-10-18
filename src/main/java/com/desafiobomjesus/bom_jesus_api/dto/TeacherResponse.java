@@ -12,6 +12,6 @@ public record TeacherResponse(
         String emailAddress,
         Status status,
         BigDecimal salary,
-        List<AddressResponse> addresses
+        List<AddressResponse> address
 ) {
 }

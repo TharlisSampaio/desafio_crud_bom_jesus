@@ -45,13 +45,8 @@ public class ImplTeacherService implements TeacherService {
     @Override
     public TeacherResponse createdTeacher(TeacherRequest teacherRequest) {
         Teacher teacher = TeacherMapper.toEntity(teacherRequest);
-        try {
-            teacherRepository.save(teacher);
-            return TeacherMapper.toTeacherResponse(teacher);
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw e;
-        }
+        teacher = teacherRepository.save(teacher);
+        return TeacherMapper.toTeacherResponse(teacher);
     }
 
     @Override
