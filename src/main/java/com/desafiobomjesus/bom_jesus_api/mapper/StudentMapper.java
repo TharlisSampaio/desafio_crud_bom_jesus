@@ -26,6 +26,7 @@ public class StudentMapper {
                 student.getPhoneNumber(),
                 student.getEmailAddress(),
                 student.getStudentNumber(),
+                student.getStatus(),
                 student.getPhoto(),
                 student.getAddress().stream().map(
                         address -> AddressMapper.toAddressResponse(address)
