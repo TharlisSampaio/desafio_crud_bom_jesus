@@ -23,13 +23,13 @@ O projeto é um CRUD (Create, Read, Update, Delete) de **alunos** e **professore
 
 ## Instalação
 
-Clone o [repositório](https://github.com/TharlisSampaio/desafio_crud_bom_jesus.git):
+Clone o [repositório](https://github.com/TharlisSampaio/desafio_crud_bom_jesus.git). O projeto usa banco de dados em memória (H2), então não é necessário configurar nada. Os dados são perdidos quando a aplicação é reiniciada:
 
 ```
 git clone https://github.com/TharlisSampaio/desafio_crud_bom_jesus.git
 ```
 
-Após clonar, configure a conexão com o banco de dados no arquivo `src/main/resources/application.properties`. Exemplo com PostgreSQL:
+Se não quiser usar banco de dados em memória. Após clonar, configure a conexão com o banco de dados no arquivo `src/main/resources/application.properties`. Exemplo com PostgreSQL:
 
 ```properties
 spring.datasource.url=jdbc:postgresql://localhost:5432/bom_jesus
@@ -39,6 +39,18 @@ spring.jpa.hibernate.ddl-auto=update
 ```
 
 As tabelas são criadas automaticamente na primeira execução.
+
+## Executando com Docker
+
+É necessário gerar o `.jar` antes de construir a imagem:
+
+```
+./mvnw clean package
+docker build -t bom-jesus-api .
+docker run -p 8080:8080 bom-jesus-api
+```
+
+A API sobe em `http://localhost:8080` e o Swagger em `http://localhost:8080/swagger-ui.html`.
 
 ## Executando
 
