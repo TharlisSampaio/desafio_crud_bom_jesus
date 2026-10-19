@@ -179,6 +179,13 @@ Resposta (`201 Created`):
   ]
 }
 ```
+## Front-end (diferencial)
+
+Além da API, foi desenvolvido um front-end em Angular que consome os endpoints de alunos e professores:
+
+**[bom_jesus_app](https://github.com/TharlisSampaio/bom_jesus_app)**
+
+Para usá-lo, suba esta API primeiro (porta `8080`) e siga as instruções de execução do repositório do front-end (`ng serve`, em `http://localhost:4200`).
 
 ## Tratamento de erros
 
